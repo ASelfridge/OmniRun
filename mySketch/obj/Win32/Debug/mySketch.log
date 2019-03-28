@@ -1,0 +1,13 @@
+﻿  main.cpp
+  ofApp.cpp
+  GameObject.cpp
+  Physics.cpp
+c:\program files (x86)\of_v0.10.1_vs2017_release\apps\myapps\omnirun\mysketch\src\gameobject.cpp(16): warning C4996: 'ofRect': Use ofDrawRectangle instead
+  c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\graphics\ofgraphics.h(512): note: see declaration of 'ofRect'
+  Runner.cpp
+     Creating library bin\mySketch_debug.lib and object bin\mySketch_debug.exp
+  mySketch.vcxproj -> C:\Program Files (x86)\of_v0.10.1_vs2017_release\apps\myApps\OmniRun\mySketch\bin\mySketch_debug.exe
+  \of_v0.10.1_vs2017_release\libs\openFrameworksCompiled\project\vs\\..\..\..\..\\libs\*) was unexpected at this time.
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(138,5): error MSB3073: The command "for /d %%f in (C:\Program Files (x86)\of_v0.10.1_vs2017_release\libs\openFrameworksCompiled\project\vs\\..\..\..\..\\libs\*) do (if exist %%f\lib\vs\Win32\*.dll ( robocopy "%%f\lib\vs\Win32" "C:\Program Files (x86)\of_v0.10.1_vs2017_release\apps\myApps\OmniRun\mySketch\bin" "*.dll" /njs /njh /np /fp /bytes ))
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(138,5): error MSB3073: if errorlevel 1 exit 0 else exit %errorlevel%
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppCommon.targets(138,5): error MSB3073: :VCEnd" exited with code 255.

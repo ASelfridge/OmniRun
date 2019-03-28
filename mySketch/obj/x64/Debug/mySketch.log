@@ -1,0 +1,48 @@
+﻿  main.cpp
+  ofApp.cpp
+  GameObject.cpp
+  Physics.cpp
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(326): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Physics.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(331): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Physics.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(912): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Physics.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(913): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Physics.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(914): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Physics.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(915): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Physics.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(326): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\GameObject.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(331): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\GameObject.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(326): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\main.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(331): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\main.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(912): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\GameObject.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(913): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\GameObject.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(914): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\GameObject.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(915): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\GameObject.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(912): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\main.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(913): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\main.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(914): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\main.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(915): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\main.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(326): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\ofApp.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(331): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\ofApp.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(912): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\ofApp.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(913): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\ofApp.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(914): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\ofApp.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(915): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\ofApp.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\apps\myapps\omnirun\mysketch\src\gameobject.cpp(16): warning C4996: 'ofRect': Use ofDrawRectangle instead
+  c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\graphics\ofgraphics.h(512): note: see declaration of 'ofRect'
+  Runner.cpp
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(326): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Runner.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(331): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Runner.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(912): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Runner.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(913): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Runner.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(914): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Runner.cpp)
+c:\program files (x86)\of_v0.10.1_vs2017_release\libs\openframeworks\math\ofmatrix4x4.h(915): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data (compiling source file src\Runner.cpp)
+     Creating library bin\mySketch_debug.lib and object bin\mySketch_debug.exp
+  mySketch.vcxproj -> C:\Program Files (x86)\of_v0.10.1_vs2017_release\apps\myApps\OmniRun\mySketch\bin\mySketch_debug.exe
+  
+  	                   2	C:\Program Files (x86)\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\x64\
+  	    New File  		 1503232	C:\Program Files (x86)\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\x64\fmodex64.dll
+  	    New File  		 1552384	C:\Program Files (x86)\of_v0.10.1_vs2017_release\libs\fmodex\lib\vs\x64\fmodexL64.dll
+  
+  	                   1	C:\Program Files (x86)\of_v0.10.1_vs2017_release\libs\FreeImage\lib\vs\x64\
+  	  *EXTRA File 		 1503232	C:\Program Files (x86)\of_v0.10.1_vs2017_release\apps\myApps\OmniRun\mySketch\bin\fmodex64.dll
+  	  *EXTRA File 		 1552384	C:\Program Files (x86)\of_v0.10.1_vs2017_release\apps\myApps\OmniRun\mySketch\bin\fmodexL64.dll
+  	    New File  		 6942208	C:\Program Files (x86)\of_v0.10.1_vs2017_release\libs\FreeImage\lib\vs\x64\FreeImage.dll
