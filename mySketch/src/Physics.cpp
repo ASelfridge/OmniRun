@@ -5,29 +5,57 @@ Physics::Physics()
 {
 	// load height map
 	heightMap.load("images/background/bgLevel1.png");
-	// set height of each collidable pixel in the height map
-	ofColor currPixel;
-	for (int i = 0; i < LEVEL_WIDTH; i++) {
-		for (int j = 0; j < LEVEL_HEIGHT; j++) {
-			currPixel = heightMap.getColor(i, j);
-			// if theres no ground at this x location
-			if (j == LEVEL_HEIGHT - 1) {
-				heightPoints[i] = LEVEL_HEIGHT;
-			}
-			// if pixel is black (collidable)
-			else if (currPixel.r == 0 && currPixel.g == 0 && currPixel.b == 0) {
-				// set point in array as height
-				heightPoints[i] = j;
-				break;
-			}
-		}
-	}
+	heightPoint = LEVEL_HEIGHT;
 }
 
 Physics::~Physics()
 {
 }
 
-void Physics::gravity(GameObject o) {
-	
+void Physics::gravity(GameObject* o) {
+	ofVec2f objPos = o->getPos();
+
+	int heightPoint;
+	ofColor currPixel;
+	// check colour of each vertical pixel at target x position, starting from objects current y position
+	for (int i = objPos.y; i < LEVEL_HEIGHT; i++) {
+		currPixel = heightMap.getColor(o->targetPos.x, i);
+		// if theres no ground at this x location
+		if (i == LEVEL_HEIGHT - 1) {
+			heightPoint = LEVEL_HEIGHT;
+		}
+		else if (currPixel.r == 0 && currPixel.g == 0 && currPixel.b == 0) {
+			heightPoint = i;
+			break;
+		}
+	}
+
+	// check horizontal/incline movement
+	int dy = heightPoint - (objPos.y + o->height);
+	if (dy > -5) {
+		objPos.x = o->targetPos.x;
+		if (dy < 5) {
+			objPos.y += dy;
+		}
+		o->setPos(objPos);
+	}
+	if (o->jumping) {
+		objPos.y = o->y0 - o->v0 * o->t + 0.5 * GRAVITY * o->t*o->t;
+		o->t += 0.2;
+
+		if (objPos.y > heightPoint - o->height) {
+			objPos.y = heightPoint - o->height;
+			o->jumping = false;
+		}
+
+		o->setPos(objPos);
+	}
+	// if fall
+	else {
+		if (objPos.y < heightPoint - o->height) {
+			o->jumping = true;
+			o->t = o->v0 = 0;
+			o->y0 = objPos.y;
+		}
+	}
 }

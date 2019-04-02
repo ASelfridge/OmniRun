@@ -3,10 +3,10 @@
 Runner::Runner()
 {
 	// not jumping or attacking
-	jumping = attacking = false;
+	attacking = false;
 
 	// place at starting position
-	pos = targetPos = ofVec2f(10, 620);
+	pos = targetPos = ofVec2f(200, 200);
 }
 
 

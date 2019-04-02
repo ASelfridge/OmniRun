@@ -28,13 +28,24 @@ void ofApp::setLevel() {
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	// check for arrow input
+	// check for arrow input and change target position
 	if (keyDown[OF_KEY_LEFT]) {
-		//runner.targetPos.x--;
+		runner.targetPos.x -= runner.getSpeed().x;
 	}
 	if (keyDown[OF_KEY_RIGHT]) {
-		//runner.targetPos.x++;
+		runner.targetPos.x += runner.getSpeed().x;
 	}
+	// if space key is pressed
+	if (keyDown[' '] && !runner.jumping) {
+		// initate runner jump
+		runner.jumping = true;
+		runner.t = 0;
+		runner.y0 = runner.getPos().y;
+		runner.v0 = runner.getSpeed().y;
+	}
+
+	// apply gravity to player
+	physics.gravity(&runner);
 }
 
 //--------------------------------------------------------------
@@ -43,7 +54,7 @@ void ofApp::draw(){
 	bgImage.draw(0, 0);
 
 	// draw runner
-	//runner.draw();
+	runner.draw();
 }
 
 //--------------------------------------------------------------

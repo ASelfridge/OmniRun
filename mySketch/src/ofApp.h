@@ -10,7 +10,8 @@ class ofApp : public ofBaseApp{
 		string background[NUM_LEVELS];
 		ofImage bgImage;
 
-		//Runner runner;
+		Physics physics;
+		Runner runner;
 
 		ofVec2f attackBoostLoc[1];
 

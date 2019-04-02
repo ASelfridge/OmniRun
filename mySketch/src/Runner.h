@@ -3,11 +3,9 @@
 class Runner :
 	public GameObject
 {
-private:
-	bool jumping;
+public:
 	bool attacking;
 
-public:
 	Runner();
 	~Runner();
 
