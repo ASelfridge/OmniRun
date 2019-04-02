@@ -35,13 +35,15 @@ void ofApp::update(){
 	if (keyDown[OF_KEY_RIGHT]) {
 		//runner.targetPos.x++;
 	}
+	omniUI.update(false);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	// draw background
 	bgImage.draw(0, 0);
-
+	// draw UI
+	omniUI.draw();
 	// draw runner
 	//runner.draw();
 }
@@ -68,7 +70,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	omniUI.update(true);
 }
 
 //--------------------------------------------------------------

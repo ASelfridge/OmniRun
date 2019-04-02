@@ -11,11 +11,12 @@
 #define TIME_ADJUST 10
 
 #include "ofMain.h"
-#include "ofApp.h"
 #include "GameObject.h"
 #include "Runner.h"
 #include "Physics.h"
 #include "AbilityButton.h"
 #include "UI.h"
 #include "Omnipotent.h"
+#include "ofApp.h"
+
 

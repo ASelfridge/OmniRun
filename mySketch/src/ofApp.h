@@ -11,6 +11,7 @@ class ofApp : public ofBaseApp{
 		ofImage bgImage;
 
 		//Runner runner;
+		UI omniUI;
 
 		ofVec2f attackBoostLoc[1];
 

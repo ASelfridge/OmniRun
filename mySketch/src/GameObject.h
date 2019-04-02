@@ -6,6 +6,9 @@ public:
 	ofVec2f speed;
 	ofVec2f targetPos;
 
+	
+	ofImage img;
+
 	bool triggered;
 	int damage;
 
