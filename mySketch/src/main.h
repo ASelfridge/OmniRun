@@ -7,9 +7,15 @@
 #define GRAVITY 9.8
 #define MAX_DAMAGE 5
 #define MAX_SPEED 2
+#define MAX_AP 5
+#define TIME_ADJUST 10
 
 #include "ofMain.h"
 #include "ofApp.h"
 #include "GameObject.h"
 #include "Runner.h"
 #include "Physics.h"
+#include "AbilityButton.h"
+#include "UI.h"
+#include "Omnipotent.h"
+
