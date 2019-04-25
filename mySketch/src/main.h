@@ -11,6 +11,7 @@
 #define TIME_ADJUST 500
 #define NUM_BUTTONS 2
 
+#include "string"
 #include "ofMain.h"
 #include "GameObject.h"
 #include "Runner.h"

@@ -85,6 +85,7 @@ void ofApp::mousePressed(int x, int y, int button){
 		{
 		case 0: // Fireball
 			fireball.start(x, y);
+			omniUI.selectedButton = -1;
 			break;
 		case 1: // Enemy
 			printf("enemy");
