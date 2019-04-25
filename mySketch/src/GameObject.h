@@ -2,6 +2,7 @@
 class GameObject
 {
 protected:
+	ofImage img;
 	ofVec2f pos;
 	ofVec2f speed;
 

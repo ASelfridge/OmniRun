@@ -4,6 +4,12 @@
 void ofApp::setup(){
 	background[0] = "images/background/bgLevel1.png";
 
+	for (int i = 1; i < 13; i++) {
+		runner.frames[i].load("images/runner/runnerLeft" + to_string(i) + ".png");
+		runner.frames[i + 12].load("images/runner/runnerRight" + to_string(i) + ".png");
+		cout << "images/runner/runnerRight" + to_string(i) + ".png\n";
+	}
+
 	endGame = false;
 	currLevel = 0;
 
@@ -13,6 +19,8 @@ void ofApp::setup(){
 	}
 
 	setLevel();
+
+	ofSetFrameRate(60);
 }
 
 void ofApp::setLevel() {
@@ -31,9 +39,15 @@ void ofApp::update(){
 	// check for arrow input and change target position
 	if (keyDown[OF_KEY_LEFT]) {
 		runner.targetPos.x -= runner.getSpeed().x;
+		runner.animate(1);
 	}
-	if (keyDown[OF_KEY_RIGHT]) {
+	else if (keyDown[OF_KEY_RIGHT]) {
 		runner.targetPos.x += runner.getSpeed().x;
+		runner.animate(2);
+	}
+	else {
+		// otherwise must be standing still
+		runner.animate(0);
 	}
 	// if space key is pressed
 	if (keyDown[' '] && !runner.jumping) {

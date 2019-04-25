@@ -6,7 +6,9 @@
 #define LEVEL_TIME 180
 #define GRAVITY 9.8
 #define MAX_DAMAGE 5
-#define MAX_SPEED 2
+#define MAX_SPEED 6
+#define RUNNER_FRAMES 25
+#define NUM_ANIM 4
 
 #include "stdio.h"
 #include "iostream"
