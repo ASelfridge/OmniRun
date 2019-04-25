@@ -7,8 +7,9 @@ public:
 
 	int cooldown;
 	int maxValue;
+	
 	AbilityButton();
 	~AbilityButton();
-	void update();
+	void update(bool clicked);
 };
 

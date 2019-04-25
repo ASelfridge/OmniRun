@@ -3,7 +3,6 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	background[0] = "images/background/bgLevel1.png";
-
 	endGame = false;
 	currLevel = 0;
 
@@ -35,7 +34,11 @@ void ofApp::update(){
 	if (keyDown[OF_KEY_RIGHT]) {
 		//runner.targetPos.x++;
 	}
-	omniUI.update(false);
+	omniUI.update(false, 0, 0);
+	
+	if (fireball.getTrigger()) {
+		fireball.update();
+	}
 }
 
 //--------------------------------------------------------------
@@ -46,6 +49,9 @@ void ofApp::draw(){
 	omniUI.draw();
 	// draw runner
 	//runner.draw();
+	if (fireball.getTrigger()) {
+		fireball.draw();
+	}
 }
 
 //--------------------------------------------------------------
@@ -70,7 +76,21 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	omniUI.update(true);
+	// Check if mouse click was on button
+	bool onButton = omniUI.update(true, x, y);
+	
+	// If not and a button is selected, perform ability
+	if (!onButton && omniUI.selectedButton > -1) {
+		switch (omniUI.selectedButton)
+		{
+		case 0: // Fireball
+			fireball.start(x, y);
+			break;
+		case 1: // Enemy
+			printf("enemy");
+			break;
+		}
+	}
 }
 
 //--------------------------------------------------------------

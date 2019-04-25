@@ -8,7 +8,8 @@
 #define MAX_DAMAGE 5
 #define MAX_SPEED 2
 #define MAX_AP 5
-#define TIME_ADJUST 10
+#define TIME_ADJUST 500
+#define NUM_BUTTONS 2
 
 #include "ofMain.h"
 #include "GameObject.h"
@@ -17,6 +18,7 @@
 #include "AbilityButton.h"
 #include "UI.h"
 #include "Omnipotent.h"
+#include "Fireball.h"
 #include "ofApp.h"
 
 

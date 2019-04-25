@@ -3,12 +3,16 @@ class UI
 {
 public:
 	AbilityButton buttons[3];
-	bool keyDown[255];
+	int buttonWidth;
+	int buttonHeight; 
+	int selectedButton;
 
+	bool keyDown[255];
+	
 	UI();
 	~UI();
 
-	void update(bool mouseclick);
+	bool update(bool mouseClick, int x, int y);
 	void draw();
 };
 
