@@ -3,7 +3,11 @@
 GameObject::GameObject()
 {
 	damage = MAX_DAMAGE;
-	speed.x = speed.y = MAX_SPEED;
+	speed = ofVec2f(MAX_SPEED, 25);
+	height = img.getHeight();
+	width = img.getWidth();
+	pos = targetPos = ofVec2f(0, 0);
+	jumping = false;
 }
 
 
@@ -12,9 +16,7 @@ GameObject::~GameObject()
 }
 
 void GameObject::draw() {
-	ofSetColor(255, 0, 0);
-	ofRect(pos.x, pos.y, 10, 10);
-	ofSetColor(255, 255, 255);
+	img.draw(pos.x, pos.y);
 }
 
 void GameObject::setPos(ofVec2f target) {
