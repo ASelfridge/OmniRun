@@ -31,7 +31,7 @@ void ofApp::setup(){
 	}
 
 	// setup speed gates
-	speedGateLoc[0] = ofVec2f(680, 350);
+	speedGateLoc[0] = ofVec2f(680, 380);
 	for (int i = 0; i < NUM_SPEEDGATES; i++) {
 		speedGates[i] = new GameObject();
 		speedGates[i]->setPos(speedGateLoc[i]);
