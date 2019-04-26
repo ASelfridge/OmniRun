@@ -2,23 +2,43 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	background[0] = "images/background/bgLevel1.png";
+	background[0] = "images/background/bgLevel_1.png";
 
 	for (int i = 1; i < 13; i++) {
 		runner.frames[i].load("images/runner/runnerLeft" + to_string(i) + ".png");
 		runner.frames[i + 12].load("images/runner/runnerRight" + to_string(i) + ".png");
 		cout << "images/runner/runnerRight" + to_string(i) + ".png\n";
 	}
-
+	enemyCounter = 0;
 	endGame = false;
 	currLevel = 0;
-	enemyCounter = 0;
+	
 	// set all key input to false
 	for (int i = 0; i < 255; i++) {
 		keyDown[i] = false;
 	}
 
 	setLevel();
+
+	// setup attack boosts
+	attackBoostLoc[0] = ofVec2f(50, 550);
+	for (int i = 0; i < NUM_BOOSTS; i++) {
+		attackBoosts[i] = new GameObject();
+		attackBoosts[i]->setPos(attackBoostLoc[i]);
+		attackBoosts[i]->img.load("images/attackBoost.png");
+		attackBoosts[i]->height = attackBoosts[i]->img.getHeight();
+		attackBoosts[i]->width = attackBoosts[i]->img.getWidth();
+	}
+
+	// setup speed gates
+	speedGateLoc[0] = ofVec2f(300, 550);
+	for (int i = 0; i < NUM_SPEEDGATES; i++) {
+		speedGates[i] = new GameObject();
+		speedGates[i]->setPos(speedGateLoc[i]);
+		speedGates[i]->img.load("images/speedGate.png");
+		speedGates[i]->height = speedGates[i]->img.getHeight();
+		speedGates[i]->width = speedGates[i]->img.getWidth();
+	}
 
 	ofSetFrameRate(60);
 }
@@ -58,30 +78,57 @@ void ofApp::update(){
 		runner.v0 = runner.getSpeed().y;
 	}
 
-	// apply gravity to player
+	// apply gravity to runner
 	physics.gravity(&runner);
+
+	// update runner timers
+	runner.updateTimers();
+
+	// check for collision with attack boosts
+	for (int i = 0; i < NUM_BOOSTS; i++) {
+		if (physics.collisionDetection(&runner, attackBoosts[i]) && !runner.getTimer(0)) {
+			runner.startTimer(0);
+			attackBoosts[i]->setPos(ofVec2f(-100, -100));
+		}
+	}
+
+	// check for collision with speed gates
+	for (int i = 0; i < NUM_SPEEDGATES; i++) {
+		if (physics.collisionDetection(&runner, speedGates[i]) && !runner.getTimer(1)) {
+			runner.startTimer(1);
+		}
+	}
 
 	omniUI.update(false, 0, 0);
 
 	if (fireball.getTrigger()) {
 		// Check for collision
-		/* if (true)
-		runner.health -= fireball.damage;
-		currPos = fireball.getPos();
-		fireball.target = currPos.y;
-		// Time boost for omni
-		currTime -= TIME_ADJUST
-		if ((omni.timer - TIME_ADJUST/2.0) < 0)
-		omni.timer = 0;
-		else
-		omni.time -= TIME_ADJUST/2.0
-		*/
+		if (physics.collisionDetection(&runner, &fireball)){
+			int currHealth = runner.getHealth();
+			runner.setHealth(currHealth-= fireball.getDamage());
+			ofVec2f currPos = fireball.getPos();
+			fireball.target = currPos.y;
+			
+			// Time boost for omni
+			currTime -= TIME_ADJUST;
+			/*if ((omni.timer - TIME_ADJUST / 2.0) < 0)
+				omni.timer = 0;
+			else
+				omni.time -= TIME_ADJUST / 2.0*/
+		}
+		
 		fireball.update();
 	}
 	for (int i = 0; i < enemyCounter; i++) {
 		enemies[i].update(runner.getPos().x);
 		physics.gravity(&enemies[i]);
+		if (physics.collisionDetection(&runner, &enemies[i])) {
+			int currHealth = runner.getHealth();
+			runner.setHealth(currHealth -= enemies[i].getDamage());
+		}
 	}
+
+	currTime--;
 }
 
 //--------------------------------------------------------------
@@ -96,11 +143,27 @@ void ofApp::draw(){
 	if (fireball.getTrigger()) {
 		fireball.draw();
 	}
+	// draw enemies
 	for (int i = 0; i < enemyCounter; i++) {
 		enemies[i].draw();
 	}
+
+
+	// draw attack boosts
+	for (int i = 0; i < NUM_BOOSTS; i++) {
+		attackBoosts[i]->draw();
+	}
+
+	// draw speed gates
+	for (int i = 0; i < NUM_SPEEDGATES; i++) {
+		speedGates[i]->draw();
+	}
+
+
 	// draw runner
 	runner.draw();
+	printf("%d \n", runner.getHealth());
+	
 }
 
 //--------------------------------------------------------------

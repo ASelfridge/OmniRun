@@ -7,6 +7,8 @@ Fireball::Fireball()
 	img.load("images/fireball.png");
 	target = 0;
 	setDamage(3);
+	height = img.getHeight();
+	width = img.getWidth();
 
 }
 
@@ -24,16 +26,16 @@ void Fireball::start(int x, int y) {
 
 }
 void Fireball::update() {
-	pos = getPos();
+	ofVec2f currPos = getPos();
 
-	if (pos.y >= target - img.getHeight()) {
+	if (currPos.y >= target - img.getHeight()) {
 		//Diappear
 		setTrigger();
 		pos.set(0, 0 - img.getHeight());
 	}
 	else {
 		// Keep moving down screen
-		pos.set(pos.x, pos.y + 5);
+		pos.set(currPos.x, currPos.y + 5);
 		setPos(pos);
 	}
 }

@@ -62,8 +62,8 @@ void UI::draw() {
 	float width = 0;
 	for (int i = 0; i < NUM_BUTTONS; i++)
 	{
-		buttons[i].img.draw(width, 0);
+		buttons[i].img.draw(LEVEL_WIDTH - width, 0);
 		width += buttonWidth;
 	}
-
+	
 }
