@@ -16,6 +16,8 @@ Runner::Runner()
 	startFrames[1] = 1;
 	startFrames[2] = 13;
 	startFrames[3] = 25;
+	startFrames[4] = 31;
+	startFrames[5] = 37;
 	
 	animDelay = 0;
 
@@ -44,7 +46,12 @@ void Runner::animate(int type) {
 				currFrame++;
 				// increment frame if not at max for this type of animation
 				if (currFrame == startFrames[type + 1]) {
-					currFrame = startFrames[type] + 2;
+					if (type == 1 || type == 2) {
+						currFrame = startFrames[type] + 2;
+					}
+					else {
+						currFrame--;
+					}
 				}
 				
 			}

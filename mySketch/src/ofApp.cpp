@@ -7,8 +7,12 @@ void ofApp::setup(){
 	for (int i = 1; i < 13; i++) {
 		runner.frames[i].load("images/runner/runnerLeft" + to_string(i) + ".png");
 		runner.frames[i + 12].load("images/runner/runnerRight" + to_string(i) + ".png");
-		cout << "images/runner/runnerRight" + to_string(i) + ".png\n";
 	}
+	for (int i = 0; i < 6; i++) {
+		runner.frames[i + 25].load("images/runner/runnerAttackRight" + to_string(i + 1) + ".png");
+		runner.frames[i + 31].load("images/runner/runnerAttackLeft" + to_string(i + 1) + ".png");
+	}
+
 	enemyCounter = 0;
 	endGame = false;
 	currLevel = 0;
@@ -64,6 +68,12 @@ void ofApp::update(){
 	else if (keyDown[OF_KEY_RIGHT]) {
 		runner.targetPos.x += runner.getSpeed().x;
 		runner.animate(2);
+	}
+	else if (keyDown[OF_KEY_UP]) {
+		runner.animate(3);
+	}
+	else if (keyDown[OF_KEY_DOWN]) {
+		runner.animate(4);
 	}
 	else {
 		// otherwise must be standing still
