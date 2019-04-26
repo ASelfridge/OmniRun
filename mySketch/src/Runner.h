@@ -8,7 +8,7 @@ private:
 	int numFrames;
 	int startFrames[NUM_ANIM];
 	int animDelay;
-	int activeTimers[1];
+	int activeTimers[NUM_TIMERS];
 
 public:
 	ofImage frames[RUNNER_FRAMES];

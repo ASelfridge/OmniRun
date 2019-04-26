@@ -20,6 +20,7 @@ void ofApp::setup(){
 
 	setLevel();
 
+	// setup attack boosts
 	attackBoostLoc[0] = ofVec2f(50, 550);
 	for (int i = 0; i < NUM_BOOSTS; i++) {
 		attackBoosts[i] = new GameObject();
@@ -29,6 +30,15 @@ void ofApp::setup(){
 		attackBoosts[i]->width = attackBoosts[i]->img.getWidth();
 	}
 
+	// setup speed gates
+	speedGateLoc[0] = ofVec2f(300, 550);
+	for (int i = 0; i < NUM_SPEEDGATES; i++) {
+		speedGates[i] = new GameObject();
+		speedGates[i]->setPos(speedGateLoc[i]);
+		speedGates[i]->img.load("images/speedGate.png");
+		speedGates[i]->height = speedGates[i]->img.getHeight();
+		speedGates[i]->width = speedGates[i]->img.getWidth();
+	}
 
 	ofSetFrameRate(60);
 }
@@ -82,6 +92,13 @@ void ofApp::update(){
 		}
 	}
 
+	// check for collision with speed gates
+	for (int i = 0; i < NUM_SPEEDGATES; i++) {
+		if (physics.collisionDetection(&runner, speedGates[i]) && !runner.getTimer(1)) {
+			runner.startTimer(1);
+		}
+	}
+
 	omniUI.update(false, 0, 0);
 
 	if (fireball.getTrigger()) {
@@ -114,13 +131,18 @@ void ofApp::draw(){
 		fireball.draw();
 	}
 
-	// draw runner
-	runner.draw();
-
 	// draw attack boosts
 	for (int i = 0; i < NUM_BOOSTS; i++) {
 		attackBoosts[i]->draw();
 	}
+
+	// draw speed gates
+	for (int i = 0; i < NUM_SPEEDGATES; i++) {
+		speedGates[i]->draw();
+	}
+
+	// draw runner
+	runner.draw();
 }
 
 //--------------------------------------------------------------
