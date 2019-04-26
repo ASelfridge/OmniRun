@@ -21,7 +21,7 @@ void ofApp::setup(){
 	setLevel();
 
 	// setup attack boosts
-	attackBoostLoc[0] = ofVec2f(50, 550);
+	attackBoostLoc[0] = ofVec2f(506, 161);
 	for (int i = 0; i < NUM_BOOSTS; i++) {
 		attackBoosts[i] = new GameObject();
 		attackBoosts[i]->setPos(attackBoostLoc[i]);
@@ -31,7 +31,7 @@ void ofApp::setup(){
 	}
 
 	// setup speed gates
-	speedGateLoc[0] = ofVec2f(300, 550);
+	speedGateLoc[0] = ofVec2f(680, 350);
 	for (int i = 0; i < NUM_SPEEDGATES; i++) {
 		speedGates[i] = new GameObject();
 		speedGates[i]->setPos(speedGateLoc[i]);
@@ -188,6 +188,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
+	//printf("%d, %d", x, y);
 	// Check if mouse click was on button
 	bool onButton = omniUI.update(true, x, y);
 
