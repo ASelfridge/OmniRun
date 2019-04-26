@@ -20,6 +20,16 @@ void ofApp::setup(){
 
 	setLevel();
 
+	attackBoostLoc[0] = ofVec2f(50, 550);
+	for (int i = 0; i < NUM_BOOSTS; i++) {
+		attackBoosts[i] = new GameObject();
+		attackBoosts[i]->setPos(attackBoostLoc[i]);
+		attackBoosts[i]->img.load("images/attackBoost.png");
+		attackBoosts[i]->height = attackBoosts[i]->img.getHeight();
+		attackBoosts[i]->width = attackBoosts[i]->img.getWidth();
+	}
+
+
 	ofSetFrameRate(60);
 }
 
@@ -58,8 +68,19 @@ void ofApp::update(){
 		runner.v0 = runner.getSpeed().y;
 	}
 
-	// apply gravity to player
+	// apply gravity to runner
 	physics.gravity(&runner);
+
+	// update runner timers
+	runner.updateTimers();
+
+	// check for collision with attack boosts
+	for (int i = 0; i < NUM_BOOSTS; i++) {
+		if (physics.collisionDetection(&runner, attackBoosts[i]) && !runner.getTimer(0)) {
+			runner.startTimer(0);
+			attackBoosts[i]->setPos(ofVec2f(-100, -100));
+		}
+	}
 }
 
 //--------------------------------------------------------------
@@ -69,6 +90,11 @@ void ofApp::draw(){
 
 	// draw runner
 	runner.draw();
+
+	// draw attack boosts
+	for (int i = 0; i < NUM_BOOSTS; i++) {
+		attackBoosts[i]->draw();
+	}
 }
 
 //--------------------------------------------------------------

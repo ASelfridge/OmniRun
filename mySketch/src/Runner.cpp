@@ -18,6 +18,11 @@ Runner::Runner()
 	startFrames[3] = 25;
 	
 	animDelay = 0;
+
+	// set timers to inactive
+	for (int i = 0; i < NUM_TIMERS; i++) {
+		activeTimers[i] = -1;
+	}
 }
 
 
@@ -61,4 +66,39 @@ void Runner::animate(int type) {
 void Runner::draw() {
 	//cout << height << "\n";
 	frames[currFrame].draw(pos.x, pos.y);
+}
+
+bool Runner::getTimer(int t) {
+	bool result = false;
+	if (activeTimers[t] != -1) {
+		result = true;
+	}
+	return result;
+}
+
+void Runner::startTimer(int t) {
+	// if attack boost
+	if (t == 0) {
+		damage = MAX_DAMAGE * 2;
+	}
+
+	// set timer as active
+	activeTimers[t] = ACTIVE_TIMER;
+}
+
+void Runner::updateTimers() {
+	for (int i = 0; i < NUM_TIMERS; i++) {
+		if (activeTimers[i] == 0 ) {
+			// if attack boost
+			if (i == 0) {
+				damage = MAX_DAMAGE / 2;
+			}
+			// set inactive
+			activeTimers[i] = -1;
+		}
+		// if timer is active, decrease it
+		else if(activeTimers[i] > 0){
+			activeTimers[i]--;
+		}
+	}
 }

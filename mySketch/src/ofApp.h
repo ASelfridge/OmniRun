@@ -13,7 +13,8 @@ class ofApp : public ofBaseApp{
 		Physics physics;
 		Runner runner;
 
-		ofVec2f attackBoostLoc[1];
+		ofVec2f attackBoostLoc[NUM_BOOSTS];
+		GameObject* attackBoosts[NUM_BOOSTS];
 
 		bool keyDown[255];
 

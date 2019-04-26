@@ -2,7 +2,6 @@
 class GameObject
 {
 protected:
-	ofImage img;
 	ofVec2f pos;
 	ofVec2f speed;
 
@@ -10,6 +9,7 @@ protected:
 	int damage;
 
 public:
+	ofImage img;
 	ofVec2f targetPos;
 
 	// for physics
