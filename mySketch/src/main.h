@@ -22,6 +22,7 @@ using namespace std;
 #include "GameObject.h"
 #include "Runner.h"
 #include "Physics.h"
+#include "Enemy.h"
 #include "AbilityButton.h"
 #include "UI.h"
 #include "Omnipotent.h"
