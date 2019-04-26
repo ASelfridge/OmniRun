@@ -2,7 +2,6 @@
 class GameObject
 {
 protected:
-	ofImage img;
 	ofVec2f pos;
 	ofVec2f speed;
 
@@ -19,6 +18,7 @@ public:
 	int height;
 	int width;
 	bool jumping;
+	ofImage img;
 
 	GameObject();
 	~GameObject();

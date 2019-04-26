@@ -60,12 +60,38 @@ void ofApp::update(){
 
 	// apply gravity to player
 	physics.gravity(&runner);
+
+	omniUI.update(false, 0, 0);
+
+	if (fireball.getTrigger()) {
+		// Check for collision
+		/* if (true)
+		runner.health -= fireball.damage;
+		currPos = fireball.getPos();
+		fireball.target = currPos.y;
+		// Time boost for omni
+		currTime -= TIME_ADJUST
+		if ((omni.timer - TIME_ADJUST/2.0) < 0)
+		omni.timer = 0;
+		else
+		omni.time -= TIME_ADJUST/2.0
+		*/
+		fireball.update();
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	// draw background
 	bgImage.draw(0, 0);
+
+	// draw UI
+	omniUI.draw();
+
+	// draw fireball
+	if (fireball.getTrigger()) {
+		fireball.draw();
+	}
 
 	// draw runner
 	runner.draw();
@@ -93,7 +119,22 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
+	// Check if mouse click was on button
+	bool onButton = omniUI.update(true, x, y);
 
+	// If not and a button is selected, perform ability
+	if (!onButton && omniUI.selectedButton > -1) {
+		switch (omniUI.selectedButton)
+		{
+		case 0: // Fireball
+			fireball.start(x, y);
+			omniUI.selectedButton = -1;
+			break;
+		case 1: // Enemy
+			printf("enemy");
+			break;
+		}
+	}
 }
 
 //--------------------------------------------------------------

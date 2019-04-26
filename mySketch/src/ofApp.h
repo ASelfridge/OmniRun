@@ -12,7 +12,9 @@ class ofApp : public ofBaseApp{
 
 		Physics physics;
 		Runner runner;
-
+		UI omniUI;
+		Omnipotent omni;
+		Fireball fireball;
 		ofVec2f attackBoostLoc[1];
 
 		bool keyDown[255];
