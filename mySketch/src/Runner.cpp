@@ -83,7 +83,7 @@ void Runner::startTimer(int t) {
 	}
 	// if speed gate
 	if (t == 1) {
-		speed.x = MAX_SPEED * 2;
+		speed.x = MAX_SPEED * 1;
 	}
 	// set timer as active
 	activeTimers[t] = ACTIVE_TIMER;
@@ -98,7 +98,7 @@ void Runner::updateTimers() {
 			}
 			// if speed gate
 			if (i == 1) {
-				speed.x = MAX_SPEED / 2;
+				speed.x = MAX_SPEED - 1;
 			}
 			// set inactive
 			activeTimers[i] = -1;

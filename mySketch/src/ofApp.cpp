@@ -58,11 +58,11 @@ void ofApp::setLevel() {
 void ofApp::update(){
 	// check for arrow input and change target position
 	if (keyDown[OF_KEY_LEFT]) {
-		runner.targetPos.x -= runner.getSpeed().x;
+		runner.targetPos.x = runner.getPos().x - runner.getSpeed().x;
 		runner.animate(1);
 	}
 	else if (keyDown[OF_KEY_RIGHT]) {
-		runner.targetPos.x += runner.getSpeed().x;
+		runner.targetPos.x = runner.getPos().x + runner.getSpeed().x;
 		runner.animate(2);
 	}
 	else {
@@ -156,13 +156,12 @@ void ofApp::draw(){
 
 	// draw speed gates
 	for (int i = 0; i < NUM_SPEEDGATES; i++) {
-		speedGates[i]->draw();
+		//speedGates[i]->draw();
 	}
 
 
 	// draw runner
 	runner.draw();
-	printf("%d \n", runner.getHealth());
 	
 }
 
