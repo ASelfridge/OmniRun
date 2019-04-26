@@ -9,6 +9,11 @@
 #define MAX_SPEED 6
 #define RUNNER_FRAMES 25
 #define NUM_ANIM 4
+#define NUM_TIMERS 1
+#define ACTIVE_TIMER 600
+
+#define NUM_BOOSTS 1
+
 #define MAX_AP 5
 #define TIME_ADJUST 600
 #define NUM_BUTTONS 2

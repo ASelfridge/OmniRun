@@ -59,3 +59,13 @@ void Physics::gravity(GameObject* o) {
 		}
 	}
 }
+
+bool Physics::collisionDetection(GameObject* o1, GameObject* o2) {
+	bool result = false;
+
+	if (o2->getPos().x < o1->getPos().x + o1->width && o2->getPos().x + o2->width > o1->getPos().x && o2->getPos().y < o1->getPos().y + o2->height && o2->getPos().y +o2->height > o1->getPos().y) {
+		result = true;
+	}
+	
+	return result;
+}

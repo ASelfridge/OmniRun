@@ -10,5 +10,6 @@ public:
 	~Physics();
 
 	void gravity(GameObject* o);
+	bool collisionDetection(GameObject* o1, GameObject* o2);
 };
 

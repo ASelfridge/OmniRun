@@ -9,6 +9,7 @@ protected:
 	int damage;
 
 public:
+	ofImage img;
 	ofVec2f targetPos;
 
 	// for physics
@@ -18,7 +19,6 @@ public:
 	int height;
 	int width;
 	bool jumping;
-	ofImage img;
 
 	GameObject();
 	~GameObject();
