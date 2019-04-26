@@ -16,6 +16,11 @@ class ofApp : public ofBaseApp{
 		ofVec2f attackBoostLoc[NUM_BOOSTS];
 		GameObject* attackBoosts[NUM_BOOSTS];
 
+		UI omniUI;
+		Omnipotent omni;
+		Fireball fireball;
+
+
 		bool keyDown[255];
 
 	public:
