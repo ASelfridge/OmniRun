@@ -4,7 +4,7 @@
 
 Fireball::Fireball()
 {
-	img.load("images/1.png");
+	img.load("images/fireball.png");
 	target = 0;
 	setDamage(3);
 
