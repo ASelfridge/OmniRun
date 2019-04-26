@@ -10,9 +10,14 @@ class ofApp : public ofBaseApp{
 		string background[NUM_LEVELS];
 		ofImage bgImage;
 
-		//Runner runner;
+
 		UI omniUI;
 		Fireball fireball; 
+
+		Physics physics;
+		Runner runner;
+
+
 		ofVec2f attackBoostLoc[1];
 
 		bool keyDown[255];

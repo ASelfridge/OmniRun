@@ -3,6 +3,14 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	background[0] = "images/background/bgLevel1.png";
+
+	for (int i = 1; i < 13; i++) {
+		runner.frames[i].load("images/runner/runnerLeft" + to_string(i) + ".png");
+		runner.frames[i + 12].load("images/runner/runnerRight" + to_string(i) + ".png");
+		cout << "images/runner/runnerRight" + to_string(i) + ".png\n";
+	}
+
+
 	endGame = false;
 	currLevel = 0;
 
@@ -12,6 +20,8 @@ void ofApp::setup(){
 	}
 
 	setLevel();
+
+	ofSetFrameRate(60);
 }
 
 void ofApp::setLevel() {
@@ -27,18 +37,52 @@ void ofApp::setLevel() {
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	// check for arrow input
+	// check for arrow input and change target position
 	if (keyDown[OF_KEY_LEFT]) {
-		//runner.targetPos.x--;
+		runner.targetPos.x -= runner.getSpeed().x;
+		runner.animate(1);
 	}
-	if (keyDown[OF_KEY_RIGHT]) {
-		//runner.targetPos.x++;
+	else if (keyDown[OF_KEY_RIGHT]) {
+		runner.targetPos.x += runner.getSpeed().x;
+		runner.animate(2);
 	}
+
 	omniUI.update(false, 0, 0);
 	
 	if (fireball.getTrigger()) {
+		// Check for collision
+			/* if (true)
+				runner.health -= fireball.damage;
+				currPos = fireball.getPos();
+				fireball.target = currPos.y;
+
+				// Time boost for omni
+				currTime -= TIME_ADJUST
+				if ((omni.timer - TIME_ADJUST/2.0) < 0)
+					omni.timer = 0;
+				else
+					omni.time -= TIME_ADJUST/2.0
+			*/	
 		fireball.update();
 	}
+
+	else {
+		// otherwise must be standing still
+		runner.animate(0);
+	}
+	// if space key is pressed
+	if (keyDown[' '] && !runner.jumping) {
+		// initate runner jump
+		runner.jumping = true;
+		runner.t = 0;
+		runner.y0 = runner.getPos().y;
+		runner.v0 = runner.getSpeed().y;
+	}
+
+	// apply gravity to player
+	physics.gravity(&runner);
+	currTime--;
+
 }
 
 //--------------------------------------------------------------
@@ -47,11 +91,15 @@ void ofApp::draw(){
 	bgImage.draw(0, 0);
 	// draw UI
 	omniUI.draw();
-	// draw runner
-	//runner.draw();
+	
+
+	
 	if (fireball.getTrigger()) {
 		fireball.draw();
 	}
+
+	runner.draw();
+
 }
 
 //--------------------------------------------------------------

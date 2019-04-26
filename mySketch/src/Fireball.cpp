@@ -6,6 +6,7 @@ Fireball::Fireball()
 {
 	img.load("images/1.png");
 	target = 0;
+	setDamage(3);
 
 }
 
@@ -15,7 +16,7 @@ Fireball::~Fireball()
 }
 
 void Fireball::start(int x, int y) {
-	printf("Fireball");
+	//printf("Fireball");
 	target = y;
 	pos.set(x - img.getWidth()/2.0, 0 - img.getHeight());
 	setPos(pos);

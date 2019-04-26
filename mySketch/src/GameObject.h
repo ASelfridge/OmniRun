@@ -1,17 +1,26 @@
 #pragma once
 class GameObject
 {
-public:
+protected:
+	
 	ofVec2f pos;
 	ofVec2f speed;
-	ofVec2f targetPos;
 
 	
-	ofImage img;
 
 	bool triggered;
 	int damage;
 
+public:
+	ofVec2f targetPos;
+	ofImage img;
+	// for physics
+	int y0;
+	int v0;
+	float t;
+	int height;
+	int width;
+	bool jumping;
 
 	GameObject();
 	~GameObject();
