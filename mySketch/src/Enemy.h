@@ -9,9 +9,10 @@ public:
 	Enemy();
 	~Enemy();
 	void start(int x, int y);
-	void update();
+	void update(int playerX);
 	ofVec2f getOrigin();
 	void setOrigin(ofVec2f);
+	void draw();
 	
 };
 

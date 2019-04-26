@@ -12,7 +12,7 @@ void ofApp::setup(){
 
 	endGame = false;
 	currLevel = 0;
-
+	enemyCounter = 0;
 	// set all key input to false
 	for (int i = 0; i < 255; i++) {
 		keyDown[i] = false;
@@ -78,6 +78,10 @@ void ofApp::update(){
 		*/
 		fireball.update();
 	}
+	for (int i = 0; i < enemyCounter; i++) {
+		enemies[i].update(runner.getPos().x);
+		physics.gravity(&enemies[i]);
+	}
 }
 
 //--------------------------------------------------------------
@@ -92,7 +96,9 @@ void ofApp::draw(){
 	if (fireball.getTrigger()) {
 		fireball.draw();
 	}
-
+	for (int i = 0; i < enemyCounter; i++) {
+		enemies[i].draw();
+	}
 	// draw runner
 	runner.draw();
 }
@@ -131,7 +137,10 @@ void ofApp::mousePressed(int x, int y, int button){
 			omniUI.selectedButton = -1;
 			break;
 		case 1: // Enemy
-			printf("enemy");
+			if (enemyCounter <= 4){
+				enemies[enemyCounter].start(x, y);
+				enemyCounter++;
+			}
 			break;
 		}
 	}

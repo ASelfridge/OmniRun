@@ -6,6 +6,8 @@ class ofApp : public ofBaseApp{
 		int currLevel;
 		int score[2];
 		int currTime;
+		int enemyCounter;
+		Enemy *enemies = new Enemy[5];
 
 		string background[NUM_LEVELS];
 		ofImage bgImage;
