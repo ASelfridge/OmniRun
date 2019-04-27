@@ -5,14 +5,14 @@
 #define NUM_LEVELS 1
 #define LEVEL_TIME 3600
 #define GRAVITY 9.8
-#define MAX_DAMAGE 5
+#define MAX_DAMAGE 1
 #define MAX_DISTANCE 30
-#define MAX_SPEED 6
-#define RUNNER_FRAMES 25
-#define NUM_ANIM 4
+#define MAX_SPEED 4
+#define RUNNER_FRAMES 37
+#define NUM_ANIM 6
 #define NUM_TIMERS 2
 #define ACTIVE_TIMER 600
-#define MAX_HEALTH 5
+#define MAX_HEALTH 6
 
 #define NUM_BOOSTS 1
 #define NUM_SPEEDGATES 1
