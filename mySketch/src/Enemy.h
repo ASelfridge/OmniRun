@@ -6,6 +6,7 @@ private:
 	bool direction;
 	ofVec2f origin;
 public:
+	bool isAlive;
 	Enemy();
 	~Enemy();
 	void start(int x, int y);

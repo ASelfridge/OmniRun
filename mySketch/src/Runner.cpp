@@ -3,7 +3,7 @@
 Runner::Runner()
 {
 	frames[0].load("images/runner/runnerStand.png");
-	health = MAX_HEALTH;
+	health = MAX_HEALTH * 100;
 	// not jumping or attacking
 	attacking = false;
 
@@ -36,47 +36,60 @@ Runner::~Runner()
 void Runner::animate(int type) {
 	// if not standing still
 	if (type > 0) {
+		// don't animate if delay still in place
 		if (animDelay > 0) {
 			animDelay--;
 		}
 		else {
-			//cout << currFrame << "\n";
 			// if this type of animation is already underway
 			if (currFrame >= startFrames[type] && currFrame < startFrames[type + 1]) {
+				// increment frame
 				currFrame++;
-				// increment frame if not at max for this type of animation
+				// if at max frames for this type of animation
 				if (currFrame == startFrames[type + 1]) {
+					// if left or right animation start back at second frame in cycle
 					if (type == 1 || type == 2) {
 						currFrame = startFrames[type] + 2;
 					}
 					else {
+						// otherwise must be attack animation so freeze final frame
 						currFrame--;
+						// change attack bool back
+						attacking = false;
 					}
+				}
+				// check if on punch frame in attack animation
+				if ((type == 3 || type == 4) && currFrame == startFrames[type + 1] - 2) {
+					attacking = true;
 				}
 				
 			}
 			else {
-				// start this animation type
+				// otherwise start this animation type
 				currFrame = startFrames[type];
+				attacking = false;
 			}
+			// add delay to animation so that frames are more clear
 			animDelay = 2;
 		}
 	}
 	else {
 		currFrame = startFrames[type];
+		attacking = false;
 	}
-	// change width to accomodate new image in animation
+	// change width and height to accomodate new image in animation
 	width = frames[currFrame].getWidth();
 	height = frames[currFrame].getHeight();
 }
 
 void Runner::draw() {
-	//cout << height << "\n";
+	// draw current frame in animation cycle
 	frames[currFrame].draw(pos.x, pos.y);
 }
 
 bool Runner::getTimer(int t) {
 	bool result = false;
+	// check if timer is not set
 	if (activeTimers[t] != -1) {
 		result = true;
 	}
@@ -90,7 +103,7 @@ void Runner::startTimer(int t) {
 	}
 	// if speed gate
 	if (t == 1) {
-		speed.x = MAX_SPEED * 2;
+		speed.x = MAX_SPEED + 2;
 	}
 	// set timer as active
 	activeTimers[t] = ACTIVE_TIMER;
@@ -105,7 +118,7 @@ void Runner::updateTimers() {
 			}
 			// if speed gate
 			if (i == 1) {
-				speed.x = MAX_SPEED / 2;
+				speed.x = MAX_SPEED - 2;
 			}
 			// set inactive
 			activeTimers[i] = -1;
@@ -116,10 +129,4 @@ void Runner::updateTimers() {
 		}
 	}
 }
-int Runner::getHealth(){
-	return health;
-}
 
-void Runner::setHealth(int h) {
-	health = h;
-}

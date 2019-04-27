@@ -5,8 +5,8 @@
 Enemy::Enemy()
 {
 	img.load("images/enemy.png");
-	setDamage(2);
 	height = img.getHeight();
+	isAlive = true;
 }
 
 
@@ -19,10 +19,14 @@ void Enemy::start(int x, int y) {
 	setOrigin(origin);
 	setPos(origin);
 }
+
 void Enemy::update(int playerX) {
 	ofVec2f currPos = getPos();
-
-	if (playerX <= (currPos.x + MAX_DISTANCE) && playerX >= (currPos.x - MAX_DISTANCE)) {
+	// check if health is 0 and draw off screen if so
+	if (health <= 0) {
+		isAlive = false;
+	}
+	else if (playerX <= (currPos.x + MAX_DISTANCE) && playerX >= (currPos.x - MAX_DISTANCE)) {
 		// Player close, attack mode
 		if (playerX < currPos.x) {
 			// Move left

@@ -3,11 +3,12 @@
 GameObject::GameObject()
 {
 	damage = MAX_DAMAGE;
-	speed = ofVec2f(MAX_SPEED, 25);
+	speed = ofVec2f(MAX_SPEED, 35);
 	height = img.getHeight();
 	width = img.getWidth();
 	pos = targetPos = ofVec2f(0, 0);
 	jumping = false;
+	health = MAX_HEALTH;
 }
 
 
@@ -49,4 +50,12 @@ ofVec2f GameObject::getSpeed() {
 
 int GameObject::getDamage() {
 	return damage;
+}
+
+int GameObject::getHealth() {
+	return health;
+}
+
+void GameObject::setHealth(int h) {
+	health = h;
 }

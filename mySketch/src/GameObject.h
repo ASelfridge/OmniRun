@@ -7,6 +7,7 @@ protected:
 
 	bool triggered;
 	int damage;
+	int health;
 
 public:
 	ofImage img;
@@ -28,10 +29,12 @@ public:
 	void setTrigger();
 	void setSpeed(int s);
 	void setDamage(int d);
+	void setHealth(int h);
 
 	ofVec2f getPos();
 	bool getTrigger();
 	ofVec2f getSpeed();
 	int getDamage();
+	int getHealth();
 };
 

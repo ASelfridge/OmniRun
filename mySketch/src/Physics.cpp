@@ -15,11 +15,17 @@ Physics::~Physics()
 void Physics::gravity(GameObject* o) {
 	ofVec2f objPos = o->getPos();
 
+	// make target position incorporate avatar width if moving right
+	int targetX = o->targetPos.x;
+	if (o->targetPos.x > objPos.x) {
+		targetX = targetX + o->width;
+	}
+
 	int heightPoint;
 	ofColor currPixel;
 	// check colour of each vertical pixel at target x position, starting from objects current y position
 	for (int i = objPos.y; i < LEVEL_HEIGHT; i++) {
-		currPixel = heightMap.getColor(o->targetPos.x, i);
+		currPixel = heightMap.getColor(targetX, i);
 		// if theres no ground at this x location
 		if (i == LEVEL_HEIGHT - 1) {
 			heightPoint = LEVEL_HEIGHT;

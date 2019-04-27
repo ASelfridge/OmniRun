@@ -2,8 +2,10 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	// load level image
 	background[0] = "images/background/bgLevel_1.png";
 
+	// load runner animation images
 	for (int i = 1; i < 13; i++) {
 		runner.frames[i].load("images/runner/runnerLeft" + to_string(i) + ".png");
 		runner.frames[i + 12].load("images/runner/runnerRight" + to_string(i) + ".png");
@@ -13,16 +15,10 @@ void ofApp::setup(){
 		runner.frames[i + 31].load("images/runner/runnerAttackLeft" + to_string(i + 1) + ".png");
 	}
 
+	// starting variables
 	enemyCounter = 0;
 	endGame = false;
 	currLevel = 0;
-	
-	// set all key input to false
-	for (int i = 0; i < 255; i++) {
-		keyDown[i] = false;
-	}
-
-	setLevel();
 
 	// setup attack boosts
 	attackBoostLoc[0] = ofVec2f(506, 161);
@@ -44,6 +40,14 @@ void ofApp::setup(){
 		speedGates[i]->width = speedGates[i]->img.getWidth();
 	}
 
+	setLevel();
+
+	// set all key input to false
+	for (int i = 0; i < 255; i++) {
+		keyDown[i] = false;
+	}
+
+	// set frame rate
 	ofSetFrameRate(60);
 }
 
@@ -54,8 +58,8 @@ void ofApp::setLevel() {
 	// set time to max
 	currTime = LEVEL_TIME;
 
-	// move to next level
-	currLevel++;
+	// move to next level (removed)
+	//currLevel++;
 }
 
 //--------------------------------------------------------------
@@ -69,6 +73,8 @@ void ofApp::update(){
 		runner.targetPos.x += runner.getSpeed().x;
 		runner.animate(2);
 	}
+
+	// check for attack key input and animate accordingly
 	else if (keyDown[OF_KEY_UP]) {
 		runner.animate(3);
 	}
@@ -79,6 +85,7 @@ void ofApp::update(){
 		// otherwise must be standing still
 		runner.animate(0);
 	}
+
 	// if space key is pressed
 	if (keyDown[' '] && !runner.jumping) {
 		// initate runner jump
@@ -129,15 +136,24 @@ void ofApp::update(){
 		
 		fireball.update();
 	}
+
+	// update enemies
 	for (int i = 0; i < enemyCounter; i++) {
-		enemies[i].update(runner.getPos().x);
-		physics.gravity(&enemies[i]);
-		if (physics.collisionDetection(&runner, &enemies[i])) {
-			int currHealth = runner.getHealth();
-			runner.setHealth(currHealth -= enemies[i].getDamage());
+		if (enemies[i].isAlive) {
+			enemies[i].update(runner.getPos().x);
+			physics.gravity(&enemies[i]);
+			// check if player is attacking enemy
+			if (physics.collisionDetection(&runner, &enemies[i]) && runner.attacking) {
+				enemies[i].setHealth(enemies[i].getHealth() - runner.getDamage());
+			}
+			else if (physics.collisionDetection(&runner, &enemies[i])) {
+				int currHealth = runner.getHealth();
+				runner.setHealth(currHealth -= enemies[i].getDamage());
+			}
 		}
 	}
 
+	// decrease level timer
 	currTime--;
 }
 
@@ -155,7 +171,9 @@ void ofApp::draw(){
 	}
 	// draw enemies
 	for (int i = 0; i < enemyCounter; i++) {
-		enemies[i].draw();
+		if (enemies[i].isAlive) {
+			enemies[i].draw();
+		}
 	}
 
 
