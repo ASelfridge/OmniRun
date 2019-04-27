@@ -19,8 +19,6 @@ void Physics::gravity(GameObject* o) {
 		targetX += o->width;
 	}
 
-	//cout << "currPos: " << objPos.x << "||| targetPos: " << targetX << "\n";
-
 	int heightPoint = 0;
 	ofColor currPixel;
 	// check colour of each vertical pixel at target x position, starting from objects current y position
