@@ -21,6 +21,8 @@ class ofApp : public ofBaseApp{
 		ofVec2f speedGateLoc[NUM_SPEEDGATES];
 		GameObject* speedGates[NUM_SPEEDGATES];
 
+		GameObject finishFlag;
+
 		UI omniUI;
 		Omnipotent omni;
 		Fireball fireball;

@@ -40,6 +40,10 @@ void ofApp::setup(){
 		speedGates[i]->width = speedGates[i]->img.getWidth();
 	}
 
+	// setup flag
+	finishFlag.img.load("images/finishFlag.png");
+	finishFlag.setPos(ofVec2f(20, 175));
+
 	setLevel();
 
 	// set all key input to false
@@ -191,6 +195,8 @@ void ofApp::draw(){
 		speedGates[i]->draw();
 	}
 
+	// draw flag
+	finishFlag.draw();
 
 	// draw runner
 	runner.draw();
