@@ -16,7 +16,7 @@ void Physics::gravity(GameObject* o) {
 	ofVec2f objPos = o->getPos();
 	int targetX = o->targetPos.x;
 	if (o->targetPos.x > objPos.x) {
-		targetX = o->targetPos.x + o->width;
+		targetX += o->width;
 	}
 
 	//cout << "currPos: " << objPos.x << "||| targetPos: " << targetX << "\n";
@@ -28,7 +28,7 @@ void Physics::gravity(GameObject* o) {
 		currPixel = heightMap.getColor(targetX, i);
 		// if theres no ground at this x location
 		if (i == LEVEL_HEIGHT - 1) {
-			heightPoint = 0;
+			heightPoint = -100;
 		}
 		else if (currPixel.r == 0 && currPixel.g == 0 && currPixel.b == 0) {
 			// find the closest white pixel
@@ -56,8 +56,10 @@ void Physics::gravity(GameObject* o) {
 		o->t += 0.2;
 
 		if (objPos.y > heightPoint - o->height) {
-			objPos.y = heightPoint - o->height;
-			o->jumping = false;
+			if (heightPoint > 0) {
+				objPos.y = heightPoint - o->height;
+				o->jumping = false;
+			}
 		}
 	}
 

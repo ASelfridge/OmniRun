@@ -59,11 +59,15 @@ void ofApp::update(){
 	// check for arrow input and change target position
 	if (keyDown[OF_KEY_LEFT]) {
 		runner.targetPos.x = runner.getPos().x - runner.getSpeed().x;
-		runner.animate(1);
+		if (!runner.jumping) {
+			runner.animate(1);
+		}
 	}
 	else if (keyDown[OF_KEY_RIGHT]) {
 		runner.targetPos.x = runner.getPos().x + runner.getSpeed().x;
-		runner.animate(2);
+		if (!runner.jumping) {
+			runner.animate(2);
+		}
 	}
 	else {
 		// otherwise must be standing still
