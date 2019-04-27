@@ -13,6 +13,6 @@ public:
 	~UI();
 
 	bool update(bool mouseClick, int x, int y);
-	void draw();
+	void draw(GameObject o, int time);
 };
 

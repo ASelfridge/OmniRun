@@ -6,7 +6,7 @@ Fireball::Fireball()
 {
 	img.load("images/fireball.png");
 	target = 0;
-	setDamage(3);
+	setDamage(300);
 	height = img.getHeight();
 	width = img.getWidth();
 
