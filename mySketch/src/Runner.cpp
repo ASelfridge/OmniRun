@@ -114,11 +114,11 @@ void Runner::updateTimers() {
 		if (activeTimers[i] == 0 ) {
 			// if attack boost
 			if (i == 0) {
-				damage = MAX_DAMAGE / 2;
+				damage = MAX_DAMAGE;
 			}
 			// if speed gate
 			if (i == 1) {
-				speed.x = MAX_SPEED - 2;
+				speed.x = MAX_SPEED;
 			}
 			// set inactive
 			activeTimers[i] = -1;

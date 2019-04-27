@@ -3,7 +3,7 @@
 GameObject::GameObject()
 {
 	damage = MAX_DAMAGE;
-	speed = ofVec2f(MAX_SPEED, 35);
+	speed = ofVec2f(MAX_SPEED, 40);
 	height = img.getHeight();
 	width = img.getWidth();
 	pos = targetPos = ofVec2f(0, 0);

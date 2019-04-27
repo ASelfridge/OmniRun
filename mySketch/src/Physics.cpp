@@ -14,25 +14,28 @@ Physics::~Physics()
 
 void Physics::gravity(GameObject* o) {
 	ofVec2f objPos = o->getPos();
-
-	// make target position incorporate avatar width if moving right
 	int targetX = o->targetPos.x;
 	if (o->targetPos.x > objPos.x) {
-		targetX = targetX + o->width;
+		targetX += o->width;
 	}
 
-	int heightPoint;
+	int heightPoint = 0;
 	ofColor currPixel;
 	// check colour of each vertical pixel at target x position, starting from objects current y position
-	for (int i = objPos.y; i < LEVEL_HEIGHT; i++) {
+	for (int i = objPos.y + o->height - 5; i < LEVEL_HEIGHT; i++) {
 		currPixel = heightMap.getColor(targetX, i);
 		// if theres no ground at this x location
 		if (i == LEVEL_HEIGHT - 1) {
-			heightPoint = LEVEL_HEIGHT;
+			heightPoint = -100;
 		}
 		else if (currPixel.r == 0 && currPixel.g == 0 && currPixel.b == 0) {
-			heightPoint = i;
-			break;
+			// find the closest white pixel
+			ofColor abovePixel;
+			abovePixel = heightMap.getColor(targetX, i - 5);
+			if (abovePixel.r != 0 && abovePixel.g != 0 && abovePixel.b != 0) {
+				heightPoint = i;
+				break;
+			}
 		}
 	}
 
@@ -43,19 +46,21 @@ void Physics::gravity(GameObject* o) {
 		if (dy < 5) {
 			objPos.y += dy;
 		}
-		o->setPos(objPos);
 	}
+
+
 	if (o->jumping) {
 		objPos.y = o->y0 - o->v0 * o->t + 0.5 * GRAVITY * o->t*o->t;
 		o->t += 0.2;
 
 		if (objPos.y > heightPoint - o->height) {
-			objPos.y = heightPoint - o->height;
-			o->jumping = false;
+			if (heightPoint > 0) {
+				objPos.y = heightPoint - o->height;
+				o->jumping = false;
+			}
 		}
-
-		o->setPos(objPos);
 	}
+
 	// if fall
 	else {
 		if (objPos.y < heightPoint - o->height) {
@@ -64,6 +69,8 @@ void Physics::gravity(GameObject* o) {
 			o->y0 = objPos.y;
 		}
 	}
+
+	o->setPos(objPos);
 }
 
 bool Physics::collisionDetection(GameObject* o1, GameObject* o2) {
