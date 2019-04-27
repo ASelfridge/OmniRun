@@ -167,7 +167,7 @@ void ofApp::draw(){
 	bgImage.draw(0, 0);
 
 	// draw UI
-	omniUI.draw();
+	omniUI.draw(runner, currTime);
 
 	// draw fireball
 	if (fireball.getTrigger()) {

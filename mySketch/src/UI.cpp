@@ -58,12 +58,20 @@ bool UI::update(bool mouseClick, int x, int y) {
 	
 }
 
-void UI::draw() {
+void UI::draw(GameObject o, int time) {
 	float width = 0;
+	// draw omnipotent buttons
 	for (int i = 0; i < NUM_BUTTONS; i++)
 	{
 		buttons[i].img.draw(width, 0);
 		width += buttonWidth;
 	}
-	
+
+	// draw runner health bar
+	ofSetColor(0, 255, 0);
+	ofRect(1100, 10, o.getHealth() / 5.0, 20);
+	ofSetColor(255, 255, 255);
+
+	// draw time to screen
+	ofDrawBitmapString(to_string(time/60), 620, 50);
 }
