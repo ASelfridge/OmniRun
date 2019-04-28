@@ -8,7 +8,7 @@ Runner::Runner()
 	attacking = false;
 
 	// place at starting position
-	pos = targetPos = ofVec2f(200, 200);
+	pos = targetPos = ofVec2f(200, 600);
 
 	numFrames  = currFrame = 0;
 
@@ -129,4 +129,3 @@ void Runner::updateTimers() {
 		}
 	}
 }
-
