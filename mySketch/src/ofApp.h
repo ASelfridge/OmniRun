@@ -2,12 +2,17 @@
 
 class ofApp : public ofBaseApp{
 	private:
+		bool startGame;
 		bool endGame;
+		string winner;
 		int currLevel;
 		int score[2];
 		int currTime;
 		int enemyCounter;
 		Enemy *enemies = new Enemy[5];
+
+		ofImage startScreen;
+		ofImage endScreen;
 
 		string background[NUM_LEVELS];
 		ofImage bgImage;
@@ -20,6 +25,8 @@ class ofApp : public ofBaseApp{
 
 		ofVec2f speedGateLoc[NUM_SPEEDGATES];
 		GameObject* speedGates[NUM_SPEEDGATES];
+
+		GameObject finishFlag;
 
 		UI omniUI;
 		Omnipotent omni;

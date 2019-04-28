@@ -2,6 +2,13 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	// load start/end screen
+	startScreen.load("images/startScreen.png");
+	endScreen.load("images/endScreen.png");
+	endGame = false;
+	startGame = true;
+	winner = "omni";
+
 	// load level image
 	background[0] = "images/background/bgLevel_1.png";
 
@@ -17,11 +24,11 @@ void ofApp::setup(){
 
 	// starting variables
 	enemyCounter = 0;
-	endGame = false;
 	currLevel = 0;
 
 	// setup attack boosts
 	attackBoostLoc[0] = ofVec2f(506, 161);
+	attackBoostLoc[1] = ofVec2f(1075, 480);
 	for (int i = 0; i < NUM_BOOSTS; i++) {
 		attackBoosts[i] = new GameObject();
 		attackBoosts[i]->setPos(attackBoostLoc[i]);
@@ -39,6 +46,12 @@ void ofApp::setup(){
 		speedGates[i]->height = speedGates[i]->img.getHeight();
 		speedGates[i]->width = speedGates[i]->img.getWidth();
 	}
+
+	// setup flag
+	finishFlag.img.load("images/finishFlag.png");
+	finishFlag.setPos(ofVec2f(20, 175));
+	finishFlag.width = finishFlag.img.getWidth();
+	finishFlag.height = finishFlag.img.getHeight();
 
 	setLevel();
 
@@ -64,6 +77,21 @@ void ofApp::setLevel() {
 
 //--------------------------------------------------------------
 void ofApp::update(){
+	// check if timer has reached 0
+	if (currTime <= 0) {
+		endGame = true;
+	}
+	
+	// check if runner has died
+	if (runner.getHealth() <= 0) {
+		endGame = true;
+	}
+
+	// check for enter key to start game
+	if (keyDown[OF_KEY_RETURN] && startGame) {
+		startGame = false;
+	}
+
 	// check for arrow input and change target position
 	if (keyDown[OF_KEY_LEFT]) {
 		runner.targetPos.x = runner.getPos().x - runner.getSpeed().x;
@@ -120,6 +148,12 @@ void ofApp::update(){
 		}
 	}
 
+	// check for collision with end flag
+	if (physics.collisionDetection(&runner, &finishFlag)) {
+		endGame = true;
+		winner = "runner";
+	}
+
 	omniUI.update(false, 0, 0);
 
 	if (fireball.getTrigger()) {
@@ -163,38 +197,50 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	// draw background
-	bgImage.draw(0, 0);
+	if (!endGame) {
+		// draw background
+		bgImage.draw(0, 0);
 
-	// draw UI
-	omniUI.draw(runner, currTime);
+		// draw UI
+		omniUI.draw(runner, currTime);
 
-	// draw fireball
-	if (fireball.getTrigger()) {
-		fireball.draw();
-	}
-	// draw enemies
-	for (int i = 0; i < enemyCounter; i++) {
-		if (enemies[i].isAlive) {
-			enemies[i].draw();
+		// draw fireball
+		if (fireball.getTrigger()) {
+			fireball.draw();
+		}
+		// draw enemies
+		for (int i = 0; i < enemyCounter; i++) {
+			if (enemies[i].isAlive) {
+				enemies[i].draw();
+			}
+		}
+
+
+		// draw attack boosts
+		for (int i = 0; i < NUM_BOOSTS; i++) {
+			attackBoosts[i]->draw();
+		}
+
+		// draw speed gates
+		for (int i = 0; i < NUM_SPEEDGATES; i++) {
+			speedGates[i]->draw();
+		}
+
+		// draw flag
+		finishFlag.draw();
+
+		// draw runner
+		runner.draw();
+
+		// draw startScrren
+		if (startGame) {
+			startScreen.draw(0, 0);
 		}
 	}
-
-
-	// draw attack boosts
-	for (int i = 0; i < NUM_BOOSTS; i++) {
-		attackBoosts[i]->draw();
+	else {
+		endScreen.draw(0, 0);
+		ofDrawBitmapString(winner + " wins", 620, 300);
 	}
-
-	// draw speed gates
-	for (int i = 0; i < NUM_SPEEDGATES; i++) {
-		speedGates[i]->draw();
-	}
-
-
-	// draw runner
-	runner.draw();
-	
 }
 
 //--------------------------------------------------------------

@@ -14,7 +14,7 @@
 #define ACTIVE_TIMER 600
 #define MAX_HEALTH 6
 
-#define NUM_BOOSTS 1
+#define NUM_BOOSTS 2
 #define NUM_SPEEDGATES 1
 
 #define MAX_AP 5

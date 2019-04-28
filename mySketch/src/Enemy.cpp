@@ -6,6 +6,7 @@ Enemy::Enemy()
 {
 	img.load("images/enemy.png");
 	height = img.getHeight();
+	damage = 4;
 	isAlive = true;
 }
 
